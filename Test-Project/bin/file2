@@ -1,0 +1,1419 @@
+Resource resource=new ClassPathResource("applicationContext.xml");  
+BeanFactory factory=new XmlBeanFactory(resource);  
+Student student=(Student)factory.getBean("studentbean");  
+
+
+Note: The Resource object represents the information of applicationContext.xml file. The Resource is the interface and the ClassPathResource is the implementation class of the Reource interface. The BeanFactory is responsible to return the bean. The XmlBeanFactory is the implementation class of the BeanFactory. There are many methods in the BeanFactory interface. One method is getBean(), which returns the object of the associated class.
+
+
+
+IOC Container:
+
+The IoC container is responsible to instantiate, configure and assemble the objects. The IoC container gets informations from the XML file and works accordingly. The main tasks performed by IoC container are:
+	• to instantiate the application class
+	• to configure the object
+	• to assemble the dependencies between the objects
+There are two types of IoC containers. They are:
+	1. BeanFactory
+	2. ApplicationContext
+
+
+1. Resource resource=new ClassPathResource("applicationContext.xml");  
+2. BeanFactory factory=new XmlBeanFactory(resource);  
+
+
+3. ApplicationContext context =   
+4.     new ClassPathXmlApplicationContext("applicationContext.xml");  
+
+Dependency Injection (DI) is a design pattern that removes the dependency from the programming code so that it can be easy to manage and test the application. Dependency Injection makes our programming code loosely coupled
+
+Dependency Lookup
+The Dependency Lookup is an approach where we get the resource after demand. There can be various ways to get the resource for example:
+A obj = new AImpl();  
+
+Problems of Dependency Lookup
+There are mainly two problems of dependency lookup.
+	• tight coupling The dependency lookup approach makes the code tightly coupled. If resource is changed, we need to perform a lot of modification in the code.
+	• Not easy for testing This approach creates a lot of problems while testing the application especially in black box testing.
+
+
+
+There are many key differences between constructor injection and setter injection.
+	1. Partial dependency: can be injected using setter injection but it is not possible by constructor. Suppose there are 3 properties in a class, having 3 arg constructor and setters methods. In such case, if you want to pass information for only one property, it is possible by setter method only.
+	2. Overriding: Setter injection overrides the constructor injection. If we use both constructor and setter injection, IOC container will use the setter injection.
+	3. Changes: We can easily change the value by setter injection. It doesn't create a new bean instance always like constructor. So setter injection is flexible than constructor injection.
+
+Autowiring:
+Autowiring feature of spring framework enables you to inject the object dependency implicitly. It internally uses setter or constructor injection.
+Autowiring can't be used to inject primitive and string values. It works with reference only.
+
+
+Advantage of Autowiring
+It requires the less code because we don't need to write the code to inject the dependency explicitly.
+
+Disadvantage of Autowiring
+No control of programmer.
+It can't be used for primitive and string values.
+
+
+Autowiring Modes
+There are many autowiring modes:
+No.	Mode	Description
+1)	no	It is the default autowiring mode. It means no autowiring bydefault.
+2)	byName	The byName mode injects the object dependency according to name of the bean. In such case, property name and bean name must be same. It internally calls setter method.
+3)	byType	The byType mode injects the object dependency according to type. So property name and bean name can be different. It internally calls setter method.
+4)	constructor	The constructor mode injects the dependency by calling the constructor of the class. It calls the constructor having large number of parameters.
+5)	autodetect	It is deprecated since Spring 3.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+String code questions:
+1. Substring 
+2. Suset
+3. Permutations
+
+
+abc
+
+
+
+
+@Autowired and @Qualifier:
+1 @Autowired  by default searchs byType
+But @Qualifier by default searches byName
+
+
+
+<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+
+
+
+
+This method says it will support only xml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Less than 3rd highest salery:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Native query:
+
+
+
+
+select this_.id as id1_1_0_,
+ this_.doc_version as doc_vers2_1_0_,
+ this_.ehr_doc_ref_id as ehr_doc_3_1_0_,
+ this_.eicr_data as eicr_dat4_1_0_, 
+this_.eicr_doc_id as eicr_doc5_1_0_,
+ this_.eicr_proc_status as eicr_pro6_1_0_,
+ this_.encounter_id as encounte7_1_0_,
+ this_.fhir_server_url as fhir_ser8_1_0_,
+ this_.initiating_action as initiati9_1_0_,
+ this_.last_updated_ts as last_up10_1_0_, 
+this_.launch_patient_id as launch_11_1_0_, 
+this_.rr_data as rr_data12_1_0_, 
+this_.response_doc_id as respons13_1_0_, 
+this_.response_type as respons14_1_0_, 
+this_.response_type_display as respons15_1_0_, 
+this_.response_x_request_id as respons16_1_0_, 
+this_.rr_proc_status as rr_proc17_1_0_, 
+this_.set_id as set_id18_1_0_, 
+this_.x_correlation_id as x_corre19_1_0_,
+ this_.x_req_id as x_req_i20_1_0_ 
+from eicr this_ where this_.eicr_doc_id=?
+
+
+
+
+SQL  :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------>
+Spring note 
+
+
+Link Troublelshooting : https://github.com/in28minutes/in28minutes-initiatives/blob/master/The-in28Minutes-TroubleshootingGuide-And-FAQ/quick-start.md
+
+
+Issue 1: 
+Description:
+
+Parameter 0 of constructor in com.web.app.game.GameRunner required a bean of type 'com.web.app.game.Game' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.web.app.game.Game' in your configuration.
+
+Solution: add @Component in bean class of 'com.web.app.game.Game'
+
+
+
+
+Issue 2: 
+
+
+Description:
+
+Parameter 0 of constructor in com.web.app.game.GameRunner required a single bean, but 2 were found:
+	- mario: defined in file [/Users/sk094067/workspace/My-Project/learning-spring-framework/target/classes/com/web/app/game/Mario.class]
+	- superContraGame: defined in file [/Users/sk094067/workspace/My-Project/learning-spring-framework/target/classes/com/web/app/game/SuperContraGame.class]
+
+
+Action:
+
+Consider marking one of the beans as @Primary, updating the consumer to accept multiple beans, or using @Qualifier to identify the bean that should be consumed
+
+
+Solution : add @Primary on bean or use @Qualifier
+
+
+
+
+
+
+Note : if we use @Primary and @Qualifier then we will get @Qualifier more presisdence
+
+
+
+
+
+
+CODE BACKUP FILES and STEP BY STEP CHANGES : For Reference
+1) Download Section Presentation: Download Presentation
+2) Bookmark the GitHub folder for this section:  https://github.com/in28minutes/spring-web-services/tree/master/restful-web-services-v2
+
+Help for Debugging Problems:
+4. Here's the code backup at the end of step 05:  https://github.com/in28minutes/spring-web-services/blob/master/restful-web-services-v2/Step05.md
+5. Step by Step changes are detailed here:  https://github.com/in28minutes/spring-web-services/blob/master/restful-web-services-v2/01-step-by-step-changes/v2.md#step-03
+
+
+
+
+
+
+6. package com.in28minutes.rest.webservices.restfulwebservices.exception;
+7.  
+8. import java.time.LocalDateTime;
+9.  
+10. import org.springframework.http.HttpStatus;
+11. import org.springframework.http.ResponseEntity;
+12. import org.springframework.web.bind.annotation.ControllerAdvice;
+13. import org.springframework.web.bind.annotation.ExceptionHandler;
+14. import org.springframework.web.context.request.WebRequest;
+15. import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+16.  
+17. import com.in28minutes.rest.webservices.restfulwebservices.user.UserNotFoundException;
+18.  
+19.  
+20. @ControllerAdvice
+21. public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler{
+22.  
+23. 	@ExceptionHandler(Exception.class)
+24. 	public final ResponseEntity<ErrorDetails> handleAllExceptions(Exception ex, WebRequest request) throws Exception {
+25. 		ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), 
+26. 				ex.getMessage(), request.getDescription(false));
+27. 		
+28. 		return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+29. 		
+30. 	}
+31.  
+32. 	@ExceptionHandler(UserNotFoundException.class)
+33. 	public final ResponseEntity<ErrorDetails> handleUserNotFoundException(Exception ex, WebRequest request) throws Exception {
+34. 		ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), 
+35. 				ex.getMessage(), request.getDescription(false));
+36. 		
+37. 		return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
+38. 		
+39. 	}
+40.  
+41. 	
+42. }
+
+
+
+
+URLs
+URI Versioning
+	• V1: http://localhost:8080/v1/person
+		○ @GetMapping("/v1/person")
+	• V2: http://localhost:8080/v2/person
+		○ @GetMapping("/v2/person")
+Request Param Versioning
+	• V1: http://localhost:8080/person?version=1
+		○ @GetMapping(path = "/person", params = "version=1")
+	• V2: http://localhost:8080/person?version=2
+		○ @GetMapping(path = "/person", params = "version=2")
+Header Versioning
+	• V1: http://localhost:8080/person/header
+		○ HEADER - X-API-VERSION:1
+		○ @GetMapping(path = "/person/header", headers = "X-API-VERSION=1")
+	• V2: http://localhost:8080/person/header
+		○ HEADER - X-API-VERSION:2
+		○ @GetMapping(path = "/person/header", headers = "X-API-VERSION=2")
+Content Negotiation Versioning
+	• V1: http://localhost:8080/person/accept
+		○ HEADER - Accept:application/vnd.company.app-v1+json
+		○ @GetMapping(path = "/person/accept", produces = "application/vnd.company.app-v1+json")
+	• V2: http://localhost:8080/person/accept
+		○ HEADER - Accept:application/vnd.company.app-v1+json
+		○ @GetMapping(path = "/person/accept", produces = "application/vnd.company.app-v2+json")
+V1 Response
+
+43. {
+44.   "name": "Bob Charlie"
+45. }
+V2 Response
+
+46. {
+47.   "name": {
+48.     "firstName": "Bob",
+49.     "lastName": "Charlie"
+50.   }
+51. }
+
+
+
+
+
+		/*
+		* Alien alien=new Alien(); UUID uuid=UUID.randomUUID(); //
+		* System.out.println(uuid); alien.setAid(uuid); alien.setName("sonu");
+		* alien.setColor("white");
+		*/
+        
+        Configuration cfg=newConfiguration().configure()
+        		.addAnnotatedClass(LaunchDetails.class)
+        		.addAnnotatedClass(Eicr.class)
+        		.addAnnotatedClass(ScheduledTasks.class);
+        SessionFactory sf=cfg.buildSessionFactory();
+        
+        Session session=sf.getCurrentSession();
+       Transaction t=session.beginTransaction();
+     //  for (int i = 0; i < 10; i++) {
+    	  Alien alien=newAlien();
+           UUID uuid=UUID.randomUUID();
+          // System.out.println(uuid);
+           alien.setAid(uuid);
+           alien.setName("sonu");
+           alien.setColor("white");
+           Serializable s= session.save(alien);
+          Alien a=session.get(Alien.class, s);
+           System.out.println(s);
+           
+           System.out.println(a);
+		
+	//}
+      
+       t.commit();
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE hibernate-configuration PUBLIC 
+  "-//Hibernate/Hibernate Configuration DTD 3.0//EN" 
+  "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd"><!-- Version 8 MySQL hiberante-cfg.xml example for Hibernate 5 --><hibernate-configuration>  <session-factory>    <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>    <!-- property name="connection.driver_class">com.mysql.jdbc.Driver</property -->    <property name="connection.url">jdbc:mysql://localhost/database</property>
+    <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>    <property name="connection.username">root</property>    <property name="connection.password">password</property>    <property name="connection.pool_size">3</property>
+    <!--property name="dialect">org.hibernate.dialect.MySQLDialect</property-->    <property name="current_session_context_class">thread</property>
+    <property name="show_sql">true</property>    <property name="format_sql">true</property>    <property name="hbm2ddl.auto">update</property>    <!-- mapping class="com.mcnz.jpa.examples.Player" / -->  </session-factory></hibernate-configuration>
+
+
+
+
+Launch MySQL as Docker Container
+
+52. docker run --detach --env MYSQL_ROOT_PASSWORD=dummypassword --env MYSQL_USER=social-media-user --env MYSQL_PASSWORD=dummypassword --env MYSQL_DATABASE=social-media-database --name mysql --publish 3306:3306 mysql:8-oracle
+
+mysqlsh commands
+
+53. mysqlsh
+54. \connect social-media-user@localhost:3306
+55. \sql
+56. use social-media-database
+57. select * from user_details;
+58. select * from post;
+59. \quit
+
+/pom.xml Modified
+
+60. <dependency>
+61. 	<groupId>mysql</groupId>
+62. 	<artifactId>mysql-connector-java</artifactId>
+63. </dependency> 
+
+/src/main/resources/application.properties Modified
+
+64. #spring.datasource.url=jdbc:h2:mem:testdb
+65. spring.jpa.show-sql=true
+66. spring.datasource.url=jdbc:mysql://localhost:3306/social-media-database
+67. spring.datasource.username=social-media-user
+68. spring.datasource.password=dummypassword
+69. spring.jpa.hibernate.ddl-auto=update
+70. spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+
+
+
+Scaller Solid principle:
+https://www.scaler.com/event/-solid-principles-every-developer-must-know-08/
+
+
+
+
+
+MICRO-SERVICES 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+COPY takes in a source and destination. It only lets you copy in a local or directory from your host (the machine-building the Docker image) into the Docker image itself.
+
+
+COPY <src> <dest>
+ADD  does that same but in addition, it also supports 2 other sources. 
+71. A URL instead of a local file/directory.
+72. Extract tar from the source directory into the destination.
+73. ADD <src> <dest>
+
+
+
+
+COPY COMMAND	ADD COMMAND
+COPY is a docker file command that copies files from a local source location to a destination in the Docker container.	ADD command is used to copy files/directories into a Docker image.
+Syntax: COPY <src> <dest>	Syntax: ADD source destination
+It only has only one assigned function.	It can also copy files from a URL.
+Its role is to duplicate files/directories in a specified location in their existing format.	ADD command is used to download an external file and copy it to the wanted destination.
+If we want to avoid backward compatibility, we should use the COPY command.	ADD command is less usable than the COPY command.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+JDBC	Hibernate
+In JDBC, one needs to write code to map the object model’s data representation to the schema of the relational model.	Hibernate maps the object model’s data to the schema of the database itself with the help of annotations.
+JDBC enables developers to create queries and update data to a relational database using the Structured Query Language (SQL).	Hibernate uses HQL (Hibernate Query Language) which is similar to SQL but understands object-oriented concepts like inheritance, association etc.
+JDBC code needs to be written in a try-catch databases block as it throws checked exceptions (SQLexception).	Whereas Hibernate manages the exceptions itself by marking them as unchecked.
+JDBC is database dependent i.e. one needs to write different codes for different database.	Whereas Hibernate is database-independent and the same code can work for many databases with minor changes.
+Creating associations between relations is quite hard in JDBC.	Associations like one-to-one, one-to-many, many-to-one, and many-to-many can be acquired easily with the help of annotations.
+It is a database connectivity tool.	It is a Java framework.
+Lazy Loading is not supported.	Lazy Loading is supported.
+It has low performance than Hibernate.	It has high performance.
+One needs to maintain explicitly database connections and transactions.  	It itself manages its own transactions.
+It has a dedicated customer support service system.	Waiting time is more for any answer to an issue.
+
+
+
+Inheriting Bean in Spring
+	1. Inheriting Bean in Spring
+By using the parent attribute of bean, we can specify the inheritance relation between the beans. In such case, parent bean values will be inherited to the current bean.
+
+
+
+• @GetMapping: It maps the HTTP GET requests on the specific handler method. It is used to create a web service endpoint that fetches It is used instead of using: @RequestMapping(method = RequestMethod.GET)
+• @PostMapping: It maps the HTTP POST requests on the specific handler method. It is used to create a web service endpoint that creates It is used instead of using: @RequestMapping(method = RequestMethod.POST)
+• @PutMapping: It maps the HTTP PUT requests on the specific handler method. It is used to create a web service endpoint that creates or updates It is used instead of using: @RequestMapping(method = RequestMethod.PUT)
+• @DeleteMapping: It maps the HTTP DELETE requests on the specific handler method. It is used to create a web service endpoint that deletes a resource. It is used instead of using: @RequestMapping(method = RequestMethod.DELETE)
+• @PatchMapping: It maps the HTTP PATCH requests on the specific handler method. It is used instead of using: @RequestMapping(method = RequestMethod.PATCH)
+• @RequestBody: It is used to bind HTTP request with an object in a method parameter. Internally it uses HTTP MessageConverters to convert the body of the request. When we annotate a method parameter with @RequestBody, the Spring framework binds the incoming HTTP request body to that parameter.
+• @ResponseBody: It binds the method return value to the response body. It tells the Spring Boot Framework to serialize a return an object into JSON and XML format.
+• @PathVariable: It is used to extract the values from the URI. It is most suitable for the RESTful web service, where the URL contains a path variable. We can define multiple @PathVariable in a method.
+• @RequestParam: It is used to extract the query parameters form the URL. It is also known as a query parameter. It is most suitable for web applications. It can specify default values if the query parameter is not present in the URL.
+• @RequestHeader: It is used to get the details about the HTTP request headers. We use this annotation as a method parameter. The optional elements of the annotation are name, required, value, defaultValue. For each detail in the header, we should specify separate annotations. We can use it multiple time in a method
+• @RestController: It can be considered as a combination of @Controller and @ResponseBody annotations. The @RestController annotation is itself annotated with the @ResponseBody annotation. It eliminates the need for annotating each method with @ResponseBody.
+• @RequestAttribute: It binds a method parameter to request attribute. It provides convenient access to the request attributes from a controller method. With the help of @RequestAttribute annotation, we can access objects that are populated on the server-side.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+kubectl controls the Kubernetes cluster manager.
+
+ Find more information at: https://kubernetes.io/docs/reference/kubectl/overview/
+
+Basic Commands (Beginner):
+  create        Create a resource from a file or from stdin
+  expose        Take a replication controller, service, deployment or pod and expose it as a new Kubernetes service
+  run           Run a particular image on the cluster
+  set           Set specific features on objects
+
+Basic Commands (Intermediate):
+  explain       Get documentation for a resource
+  get           Display one or many resources
+  edit          Edit a resource on the server
+  delete        Delete resources by file names, stdin, resources and names, or by resources and label selector
+
+Deploy Commands:
+  rollout       Manage the rollout of a resource
+  scale         Set a new size for a deployment, replica set, or replication controller
+  autoscale     Auto-scale a deployment, replica set, stateful set, or replication controller
+
+Cluster Management Commands:
+  certificate   Modify certificate resources.
+  cluster-info  Display cluster information
+  top           Display resource (CPU/memory) usage
+  cordon        Mark node as unschedulable
+  uncordon      Mark node as schedulable
+  drain         Drain node in preparation for maintenance
+  taint         Update the taints on one or more nodes
+
+Troubleshooting and Debugging Commands:
+  describe      Show details of a specific resource or group of resources
+  logs          Print the logs for a container in a pod
+  attach        Attach to a running container
+  exec          Execute a command in a container
+  port-forward  Forward one or more local ports to a pod
+  proxy         Run a proxy to the Kubernetes API server
+  cp            Copy files and directories to and from containers
+  auth          Inspect authorization
+  debug         Create debugging sessions for troubleshooting workloads and nodes
+
+Advanced Commands:
+  diff          Diff the live version against a would-be applied version
+  apply         Apply a configuration to a resource by file name or stdin
+  patch         Update fields of a resource
+  replace       Replace a resource by file name or stdin
+  wait          Experimental: Wait for a specific condition on one or many resources
+  kustomize     Build a kustomization target from a directory or URL.
+
+Settings Commands:
+  label         Update the labels on a resource
+  annotate      Update the annotations on a resource
+  completion    Output shell completion code for the specified shell (bash, zsh or fish)
+
+Other Commands:
+  alpha         Commands for features in alpha
+  api-resources Print the supported API resources on the server
+  api-versions  Print the supported API versions on the server, in the form of "group/version"
+  config        Modify kubeconfig files
+  plugin        Provides utilities for interacting with plugins
+  version       Print the client and server version information
+
+Usage:
+  kubectl [flags] [options]
+
+Use "kubectl <command> --help" for more information about a given command.
+Use "kubectl options" for a list of global command-line options (applies to all commands).
+
+
+
+
+------------>
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Common Commands:
+  run         Create and run a new container from an image
+  exec        Execute a command in a running container
+  ps          List containers
+  build       Build an image from a Dockerfile
+  pull        Download an image from a registry
+  push        Upload an image to a registry
+  images      List images
+  login       Log in to a registry
+  logout      Log out from a registry
+  search      Search Docker Hub for images
+  version     Show the Docker version information
+  info        Display system-wide information
+
+Management Commands:
+  builder     Manage builds
+  buildx*     Docker Buildx (Docker Inc., v0.10.5)
+  compose*    Docker Compose (Docker Inc., v2.18.1)
+  container   Manage containers
+  context     Manage contexts
+  image       Manage images
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  plugin      Manage plugins
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Swarm Commands:
+  swarm       Manage Swarm
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  import      Import the contents from a tarball to create a filesystem image
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  wait        Block until one or more containers stop, then print their exit codes
+
+Invalid Plugins:
+  dev         failed to fetch metadata: fork/exec /Users/sk094067/.docker/cli-plugins/docker-dev: no such file or directory
+  extension   failed to fetch metadata: fork/exec /Users/sk094067/.docker/cli-plugins/docker-extension: no such file or directory
+  sbom        failed to fetch metadata: fork/exec /Users/sk094067/.docker/cli-plugins/docker-sbom: no such file or directory
+  scan        failed to fetch metadata: fork/exec /Users/sk094067/.docker/cli-plugins/docker-scan: no such file or directory
+  scout       failed to fetch metadata: fork/exec /Users/sk094067/.docker/cli-plugins/docker-scout: no such file or directory
+
+Global Options:
+      --config string      Location of client config files (default "/Users/sk094067/.docker")
+  -c, --context string     Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default context set with "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket to connect to
+  -l, --log-level string   Set the logging level ("debug", "info", "warn", "error", "fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/Users/sk094067/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/Users/sk094067/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/Users/sk094067/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Run 'docker COMMAND --help' for more information on a command.
+
+For more help on how to use Docker, head to https://docs.docker.com/go/guides/
+
+
+
+
+
+
+
+
+
+Create policy for IAM user:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Application Properties Table
+The following tables provide a list of common Spring Boot properties:
+Property	Default Values	Description
+Debug	false	It enables debug logs.
+spring.application.name		It is used to set the application name.
+spring.application.admin.enabled	false	It is used to enable admin features of the application.
+spring.config.name	application	It is used to set config file name.
+spring.config.location		It is used to config the file name.
+server.port	8080	Configures the HTTP server port
+server.servlet.context-path		It configures the context path of the application.
+logging.file.path		It configures the location of the log file.
+spring.banner.charset	UTF-8	Banner file encoding.
+spring.banner.location	classpath:banner.txt	It is used to set banner file location.
+logging.file		It is used to set log file name. For example, data.log.
+spring.application.index		It is used to set application index.
+spring.application.name		It is used to set the application name.
+spring.application.admin.enabled	false	It is used to enable admin features for the application.
+spring.config.location		It is used to config the file locations.
+spring.config.name	application	It is used to set config the file name.
+spring.mail.default-encoding	UTF-8	It is used to set default MimeMessage encoding.
+spring.mail.host		It is used to set SMTP server host. For example, smtp.example.com.
+spring.mail.password		It is used to set login password of the SMTP server.
+spring.mail.port		It is used to set SMTP server port.
+spring.mail.test-connection	false	It is used to test that the mail server is available on startup.
+spring.mail.username		It is used to set login user of the SMTP server.
+spring.main.sources		It is used to set sources for the application.
+server.address		It is used to set network address to which the server should bind to.
+server.connection-timeout		It is used to set time in milliseconds that connectors will wait for another HTTP request before closing the connection.
+server.context-path		It is used to set context path of the application.
+server.port	8080	It is used to set HTTP port.
+server.server-header		It is used for the Server response header (no header is sent if empty)
+server.servlet-path	/	It is used to set path of the main dispatcher servlet
+server.ssl.enabled		It is used to enable SSL support.
+spring.http.multipart.enabled	True	It is used to enable support of multi-part uploads.
+spring.servlet.multipart.max-file-size	1MB	It is used to set max file size.
+spring.mvc.async.request-timeout		It is used to set time in milliseconds.
+spring.mvc.date-format		It is used to set date format. For example, dd/MM/yyyy.
+spring.mvc.locale		It is used to set locale for the application.
+spring.social.facebook.app-id		It is used to set application's Facebook App ID.
+spring.social.linkedin.app-id		It is used to set application's LinkedIn App ID.
+spring.social.twitter.app-id		It is used to set application's Twitter App ID.
+security.basic.authorize-mode	role	It is used to set security authorize mode to apply.
+security.basic.enabled	true	It is used to enable basic authentication.
+Spring.test.database.replace	any	Type of existing DataSource to replace.
+Spring.test.mockmvc.print	default	MVC Print option
+spring.freemaker.content-type	text/html	Content Type value
+server.server-header		Value to use for the server response header.
+spring.security.filter.dispatcher-type	async, error, request	Security filter chain dispatcher types.
+spring.security.filter.order	-100	Security filter chain order.
+spring.security.oauth2.client.registration.*		OAuth client registrations.
+spring.security.oauth2.client.provider.*		OAuth provider details.
+
+
+AOP Terminology
+	• Aspect: An aspect is a module that encapsulates advice and pointcuts and provides cross-cutting An application can have any number of aspects. We can implement an aspect using regular class annotated with @Aspect annotation.
+	• Pointcut: A pointcut is an expression that selects one or more join points where advice is executed. We can define pointcuts using expressions or patterns. It uses different kinds of expressions that matched with the join points. In Spring Framework, AspectJ pointcut expression language is used.
+	• Join point: A join point is a point in the application where we apply an AOP aspect. Or it is a specific execution instance of an advice. In AOP, join point can be a method execution, exception handling, changing object variable value, etc.
+	• Advice: The advice is an action that we take either before or after the method execution. The action is a piece of code that invokes during the program execution. There are five types of advices in the Spring AOP framework: before, after, after-returning, after-throwing, and around advice. Advices are taken for a particular join point. We will discuss these advices further in this section.
+	• Target object: An object on which advices are applied, is called the target object. Target objects are always a proxied It means a subclass is created at run time in which the target method is overridden, and advices are included based on their configuration.
+	• Weaving: It is a process of linking aspects with other application types. We can perform weaving at run time, load time, and compile time.
+
+74. @SpringBootApplication  
+75. @EnableAspectJAutoProxy(proxyTargetClass=true)  
+76. public class AopBeforeAdviceExampleApplication   
+77. {  
+78. public static void main(String[] args) {  
+79. SpringApplication.run(AopBeforeAdviceExampleApplication.class, args);  
+80. }  
+81. } 
+
+
+
+@Before(value = "execution(* com.javatpoint.service.EmployeeService.*(..)) and args(empId, fname, sname)")  
+
+@After(value = "execution(* com.javatpoint.service.EmployeeService.*(..)) and args(empId, fname, sname)")  
+
+
+
+82. @Aspect  
+83. @Component  
+84. public class BankAspect  
+85. {  
+86. //Displays all the available methods i.e. the advice will be called for all the methods  
+87. @Pointcut(value= "execution(* com.javatpoint.service.BankService.*(..))")  
+88. private void logDisplayingBalance()   
+89. {   
+90. }  
+91. //Declares the around advice that is applied before and after the method matching with a pointcut expression  
+92. @Around(value= "logDisplayingBalance()")  
+93. public void aroundAdvice(ProceedingJoinPoint jp) throws Throwable   
+94. {  
+95. System.out.println("The method aroundAdvice() before invokation of the method " + jp.getSignature().getName() + " method");  
+96. try   
+97. {  
+98. jp.proceed();  
+99. }   
+100. finally   
+101. {  
+102.   
+103. }  
+104. System.out.println("The method aroundAdvice() after invokation of the method " + jp.getSignature().getName() + " method");  
+105. }  
+106. }
+
+
+
+@AfterReturning(value="execution(* com.javatpoint.service.impl.AccountServiceImpl.*(..))",returning="account")  
+
+
+@AfterThrowing(value="execution(* com.javatpoint.service.impl.AccountServiceImpl.*(..))",throwing="ex")  
+
+
+Spring Boot JDBC	Spring JDBC
+There is only a spring-boot-starter-jdbc dependency is required.	In Spring JDBC, multiple dependencies need to be configured like spring-jdbc and spring-context.
+It automatically configures Datasource bean, if not maintain explicitly. If we do not want to use the bean, we can set a property spring.datasource.initialize to false.	In Spring JDBC, it is necessary to create a database bean either using XML or javaconfig.
+We do not need to register Template beans because Spring Boot automatically registers beans.	The Template beans such as PlatformTransactionManager, JDBCTemplate, NamedParameterJdbcTemplate must be registered.
+Any db initialization scripts stored in .sql file gets executed automatically.	If any db initialization scripts like dropping or creation of tables are created in SQL file, this info needs to be given explicitly in the configuration.
+JDBC vs. Hibernate
+JDBC	Hibernate
+JDBC is a technology.	Hibernate is an ORM framework.
+In JDBC, the user is responsible for creating and closing the connections.	In Hibernate, the run time system takes care of creating and closing the connections.
+It does not support lazy loading.	It supports lazy loading that offers better performance.
+It does not support associations (the connection between two separate classes).	It supports associations.
+
+
+
+
+CrudRepository vs. JpaRepository
+CrudRepository	JpaRepository
+CrudRepository does not provide any method for pagination and sorting.	JpaRepository extends PagingAndSortingRepository. It provides all the methods for implementing the pagination.
+It works as a marker interface.	JpaRepository extends both CrudRepository and PagingAndSortingRepository.
+It provides CRUD function only. For example findById(), findAll(), etc.	It provides some extra methods along with the method of PagingAndSortingRepository and CrudRepository. For example, flush(), deleteInBatch().
+It is used when we do not need the functions provided by JpaRepository and PagingAndSortingRepository.	It is used when we want to implement pagination and sorting functionality in an application.
+Spring Boot CRUD Operation Example
+
+
+
+
+
+ Difference between PUT and POST
+PUT	POST
+RFC-2616 clearly mention that PUT method requests for the attached entity (in the request body) to be stored into the server which hosts the supplied Request-URI.	The POST method is used to request that the origin server accept the entity attached in the request as a new subordinate of the resource identified by the Request-URI in the Request-Line.
+	
+If the Request-URI refers to an already existing resource – an update operation will happen, otherwise create operation should happen if Request-URI is a valid resource URI (assuming the client is allowed to determine resource identifier).	It essentially means that POST request-URI should be of a collection URI.
+PUT /questions/{question-id}	POST /questions
+PUT method is idempotent. So if we retry a request multiple times, that should be equivalent to a single request invocation.	POST is NOT idempotent. So if we retry the request N times, we will end up having N resources with N different URIs created on the server.
+Use PUT when we want to modify a singular resource that is already a part of resources collection.	Use POST when you want to add a child resource under resources collection.
+
+PUT replaces the resource in its entirety. Use PATCH if request updates part of the resource.
+Though PUT is idempotent, we should not cache its response.	Responses to this method are not cacheable, unless the response includes appropriate Cache-Control or Expires header fields.
+	
+	However, the 303 (See Other) response can be used to direct the user agent to retrieve a cacheable resource.
+Generally, in practice, use PUT for UPDATE operations.	Always use POST for CREATE operations.
+2. PUT vs POST with Example
+Let’s say we are designing a network application. Let’s list down a few URIs and their purpose to get a better understanding of when to use POST and when to use PUT operations.
+GET 	/device-management/devices       :Get all devices
+POST 	/device-management/devices       :Create a new device
+GET 	/device-management/devices/{id}:Get the device information identified by "id"PUT 	/device-management/devices/{id}:Update the device information identified by "id"DELETE	/device-management/devices/{id}:Delete device by "id"
+
+
+
+
+
+
+Difference Between PUT, POST, and PATCH
+PUT
+• The PUT method is idempotent, meaning that calling the same request multiple times will result in the same resource state on the server.
+• The entire resource is updated with the new data in the request body, which means that any fields not included in the request body will be overwritten with null or default values.
+• PUT is often used to create a new resource when the client specifies the resource identifier. For example, when creating a new user with a specific ID.
+• If the resource specified in the request line does not exist, the server may create a new resource or return an error, depending on the API design.
+POST
+• The POST method is not idempotent, meaning that calling the same request multiple times may result in different resource states on the server.
+• POST is often used to create a new resource when the client does not specify the resource identifier. For example, when creating a new user and the server generates a new ID.
+• The request body of a POST request can be in a variety of formats, including form data, JSON, XML, or plain text.
+• The server may choose to return a new resource identifier in the response body, which can be useful for further interactions with the resource.
+PATCH
+• The PATCH method is not idempotent, meaning that calling the same request multiple times may result in different resource states on the server.
+• PATCH is often used to make partial updates to a resource, rather than completely replacing it as with the PUT method.
+• The request body of a PATCH request typically contains a set of instructions on how to modify the resource on the server, such as the JSON Patch format.
+• Care should be taken when designing PATCH requests to ensure that they do not cause unintended side effects or conflicts with other concurrent requests modifying the same resource.
+Conclusion
+In conclusion, the choice of HTTP method (PUT, POST, PATCH) for RESTful API operations depends on the specific requirements and semantics of the API.
+PUT is suitable when the entire resource needs to be updated and the client specifies the resource identifier. POST is suitable when creating a new resource and the client does not specify the resource identifier. PATCH is suitable when making partial updates to a resource.
+It is important to consider the idempotency of the HTTP method, the request and response formats, and the potential side effects and conflicts of the operation. By choosing the appropriate HTTP method and designing the API carefully, you can ensure that your API is efficient, reliable, and easy to use.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CAREB/ECISA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+File io
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

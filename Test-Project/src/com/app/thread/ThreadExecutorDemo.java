@@ -54,6 +54,8 @@ public class ThreadExecutorDemo {
 			Future submit = newFixedThreadPool.submit(t);
 			try {
 				Object object = submit.get();
+				System.out.println(submit.isDone());
+				System.out.println(submit.isCancelled());
 				
 				
 				System.out.println(object);

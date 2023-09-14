@@ -1,8 +1,13 @@
 package com.app.java8;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Queue;
+import java.util.Stack;
+import java.util.TreeSet;
+import java.util.Vector;
 
 class Employee
 {
@@ -28,6 +33,21 @@ public class EmployeeMain {
 
 	public static void main(String[] args) {
 		ArrayList<Employee > al=new ArrayList<>();
+		HashSet s=new HashSet<>();
+		s.add(10);
+		s.add(null);
+		System.out.println("Sonu....."+s);
+		LinkedList ll=new  LinkedList();
+		Vector v=new Vector();
+		Stack stack=new Stack();
+		Queue queue=new LinkedList<>();
+		
+		TreeSet ts=new TreeSet();
+		ts.add(10);
+		//ts.add(null);
+		
+		ll.add(10);
+		
 		
 		al.add(new Employee(1, "Sonu", 2000, 20));
 		al.add(new Employee(20, "kalyan", 2000, 30));

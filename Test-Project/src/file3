@@ -1,0 +1,38 @@
+Ais-ecr-now-app:
+
+FROM docker.cernerrepos.net/ais/ais-base-image:0.0.42-20230303T100706Z
+LABEL com.cerner.author-name=N/A com.cerner.branch=N/A com.cerner.build-date=20230705T070131Z com.cerner.entrypoint=ais-ecr-now-app-0.0.129.jar com.cerner.name=ais-ecr-now-app com.cerner.repo-sha=N/A com.cerner.repo-url=https://github.cerner.com/ipaas/ais-ecr-now-app com.cerner.version=0.0.129
+USER root
+COPY --chown=ais:ais maven /maven/
+USER ais
+CMD ["-Drunning-in-container"]
+ENTRYPOINT ["/bin/sh","-c","java -DCLOUD_CONFIG_URL=https://ecr-config-dev.corp.cerner.health/ -DCLOUD_CONFIG_SEARCH_PATH=/ -Dspring.profiles.active=cern_ecr-dev-cerner.corp,junit-it -Dspring.main.allow-bean-definition-overriding=true -Dspring.liquibase.enabled=false $JAVA_OPTS -javaagent:/opt/newrelic/newrelic.jar -Djava.security.egd=file:/dev/./urandom -jar /maven/ais-ecr-now-app-0.0.129.jar"]
+
+
+Ecr-now:
+
+FROM maven:3.8.1-adoptopenjdk-11 AS builder
+WORKDIR /build
+COPY pom.xml .
+RUN mvn -U dependency:resolve dependency:resolve-plugins
+
+COPY src src
+RUN mvn -U package -Dskip.unit.tests=true -Dskip.integration.tests=true
+
+FROM tomcat asappserver
+RUN sed -i 's/port="8080"/port="8081"/'${CATALINA_HOME}/conf/server.xml
+EXPOSE 8081
+RUN mkdir /app-artifacts
+COPY documents/app-artifacts /app-artifacts
+
+RUN mkdir /schema
+COPY src/test/resources/AppData/Schema /schema
+
+VOLUME /config
+VOLUME /output
+VOLUME /logs
+
+RUN rm -fr /usr/local/tomcat/webapps/ROOT.war
+COPY --from=builder /build/target/ecr-now.war /usr/local/tomcat/webapps/ROOT.war
+
+
